@@ -1,30 +1,39 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int s1, s2, s3;
-
-int vs(int a, int b, int c)
-{
-	int v;
-	v = a*b*c;
-	s1 = a*b;
-	s2 = b*c;
-	s3 = c*a;
-
-	return v;
-}
+float Max = 0, Min = 0;
 
 int main(void)
 {
-	int v, l, w, h;
-	printf("\n Please input length,width,hight\n");
-	scanf_s("%d%d%d", &l, &w, &h, 3);
+	float average(float array[], int n);
+	float ave, score[10];
 
-	v = vs(l, w, h);
-	printf("\nv=%d,s1=%d,s2=%d,s3=%d\n", v, s1, s2, s3);
+	int i;
+	for (i = 0; i < 10; i++)
+	{
+		scanf_s("%f", &score[i]);
+	}
+	ave = average(score, 10);
+	printf("max=%6.2f\nmin=%6.2f\naverage=%6.2f\n", Max, Min, ave);
 	system("pause");
-
-
 }
 
-#这个是一保测试程序,输入长宽高然后计算出三个面的面积和体积.
+
+
+float average(float array[], int n)
+{
+	int i;
+	float aver, sum = array[0];
+	Max = Min = array[0];
+
+	for (i = 1; i < n; i++)
+	{
+		if (array[i] > Max)
+			Max = array[i];
+		else if (array[i] < Min)
+			Min = array[i];
+		sum += array[i];
+	}
+	aver = sum / n;
+	return aver;
+	}
